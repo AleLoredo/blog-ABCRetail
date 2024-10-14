@@ -1,18 +1,47 @@
-doctype html
-html
-    head
-        title Blog Personal
-        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
-    body
-        .container
-            h1.text-center Bienvenido a mi Blog
-        .d-flex.justify-content-between
-            a.btn.btn-primary(href="/new") Crear nueva publicación
-            a.btn.btn-secondary(href="/register") Registrarse
-            a.btn.btn-info(href="/login") Iniciar sesión
-        ul.list-group.mt-4
-            each post in posts
-                li.list-group-item
-                    h5 #{post.title} - #{post.author}
-                    a(href=`/edit/${post.id}`) Editar
-                    a.btn.btn-sm.btn-info.float-right(href=`/comment/${post.id}`) Comentar
+extends layout.pug
+
+block content
+    //- .card.mb-4
+    //-     .card-body
+    //-         .container
+    //-             h1.text-center Bienvenido al ABC Retail Blog
+    //-         .d-flex.justify-content-between
+    //-             a.btn.btn-primary(href="/new") Crear nueva publicación
+    //-         ul.list-group.mt-4
+    //-             each post in posts
+    //-                 li.list-group-item
+    //-                     h5 #{post.title} - #{post.author}
+    //-                     a(href=`/edit/${post.id}`) Editar
+    //-                     a.btn.btn-sm.btn-info.float-right(href=`/comment/${post.id}`) Comentar
+    //-                 each comments in post
+    //-                     h6 #{comments.texto}
+    each post in posts
+        .card.mb-4
+            .card-body
+                h2.card-title.text-start #{post.title} 
+                p.text-end.text-muted By #{post.author}
+                p.card-text #{post.content}
+                a.btn.btn-primary(href=`/edit/${post.id}`) Editar
+                //- Like and Danger icons
+                .d-flex.justify-content-start.mb-3
+                button.btn.btn-outline-primary.me-2
+                    i.bi.bi-hand-thumbs-up
+                    |  Thumbs Up
+                button.btn.btn-outline-danger
+                    i.bi.bi-hand-thumbs-down
+                    |  Danger
+                //- Comment section
+                .mb-3
+                input.form-control(type="text", placeholder="Add a comment")
+                button.btn.btn-primary.mt-2 Submit
+
+                //- Comments
+                each comments in post.comments
+                    
+                    .border-top.pt-3
+                    p
+                        strong Comment-Author: #{comments.text}
+                    button.btn.btn-outline-primary.me-2
+                        i.bi.bi-hand-thumbs-up
+                    button.btn.btn-outline-danger
+                        i.bi.bi-hand-thumbs-down

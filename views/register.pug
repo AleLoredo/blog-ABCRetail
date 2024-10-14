@@ -1,17 +1,14 @@
-doctype html
-html
-    head
-        title Registro de Usuario
-        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
-    body
-        .container
-        h1.text-center Registro
-        form(action="/register", method="POST")
-            .form-group
-            label(for="username") Usuario
-            input.form-control(type="text", name="username", placeholder="Usuario", required)
-            .form-group
-            label(for="password") Contraseña
-            input.form-control(type="password", name="password", placeholder="Contraseña", required)
-            button.btn.btn-success(type="submit") Registrarse
+extends layout.pug
 
+block content
+    .card.mb-4
+        .card-body
+            h1.text-center Registro
+            form(action="/register", method="POST")
+                .form-group
+                label(for="username") Usuario
+                input.form-control(type="text", name="username", placeholder="Usuario", required)
+                .form-group
+                label(for="password") Contraseña
+                input.form-control(type="password", name="password", placeholder="Contraseña", required)
+                button.mt-3.btn.btn-success(type="submit") Registrarse

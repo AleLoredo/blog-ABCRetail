@@ -1,16 +1,14 @@
-doctype html
-html
-    head
-        title Editar Publicación
-        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
-    body
-        .container
-        h1.text-center Editar Publicación
-        form(action=`/edit/${post.id}`, method="POST")
-            .form-group
-            label(for="title") Título
-            input.form-control(type="text", name="title", value=post.title, required)
-            .form-group
-            label(for="content") Contenido
-            textarea.form-control(name="content", required)= post.content
-            button.btn.btn-primary(type="submit") Actualizar
+extends layout.pug
+
+block content
+    .card.mb-4
+        .card-body
+            h1.text-center Editar Publicación
+            form(action=`/edit/${post.id}`, method="POST")
+                .form-group
+                label(for="title") Título
+                input.form-control(type="text", name="title", value=post.title, required)
+                .form-group
+                label(for="content") Contenido
+                textarea.form-control(name="content", required)= post.content
+                button.btn.mt-3.btn-primary(type="submit") Actualizar

@@ -1,14 +1,12 @@
-doctype html
-html
-    head
-        title Comentar Publicación
-        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
-    body
-        .container
-        h1.text-center Comentar en la publicación #{postId}
-        form(action=`/comment/${postId}`, method="POST")
-            .form-group
-            label(for="comment") Comentario
-            textarea.form-control(name="comment", required)
-            button.btn.btn-primary(type="submit") Enviar comentario
-        a.btn.btn-secondary(href='/') Volver a la lista de publicaciones
+extends layout.pug
+
+block content
+    .card.mb-4
+        .card-body
+            h1.text-center Comentar en la publicación #{postId}
+            form(action=`/comment/${postId}`, method="POST")
+                .form-group
+                label(for="comment") Comentario
+                textarea.form-control(name="comment", required)
+                button.btn.mt-3.btn-primary(type="submit") Enviar comentario
+            a.btn.mt-3.btn-secondary(href='/') Volver a la lista de publicaciones
