@@ -1,17 +1,43 @@
 var createError = require('http-errors');
 var express = require('express');
+
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const session = require('express-session');
+
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
+
+// se agregan las rutas custom
+const blogRoutes = require('./routes/blogRoutes');
+const userRoutes = require('./routes/userRoutes');
+
+// esto no sabemos que onda si va aca o no
+// var authMiddleware = require('./routes/authMiddleware');
 
 var app = express();
+
+// Configuración de las sesiones
+app.use(session({
+  secret: 'tuClaveSecreta', // Cambia esto por una clave secreta que solo tú conozcas
+  resave: false, // No volver a guardar la sesión si no ha cambiado
+  saveUninitialized: false, // No crear sesiones vacías
+  cookie: { secure: false } // Debe ser true si usas HTTPS
+}));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('view engine', 'pug');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public')); // Servir archivos estáticos
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -19,8 +45,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Página principal
+app.get('/', (req, res) => {
+  res.render('login');
+});
+
+//app.use('/', indexRouter);
+//app.use('/users', usersRouter);
+
+// agregamos las dos custom
+app.use('/', blogRoutes);
+app.use('/', userRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +73,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Cargar usuarios desde data.json
+function loadUsers() {
+  try {
+      const data = fs.readFileSync('data/usuarios.json');
+      return JSON.parse(data);
+  } catch (error) {
+      return [];
+  }
+}
+
 
 module.exports = app;
