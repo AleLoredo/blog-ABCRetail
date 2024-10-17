@@ -1,0 +1,48 @@
+[
+  {
+    "tittle": "Pautas generales para escribir publicaciones en este blog",
+    "content": "Cada publicación debe ser respetuosa.",
+    "author": "Admin",
+    "comments": [
+      {
+        "author": "Ezequiel",
+        "content": "muy buena publicacíon",
+        "date": "10/12/2024, 12:04:44 PM"
+      },
+      {
+        "author": "Adrian",
+        "content": "excelente contenido",
+        "date": "10/12/2024, 12:22:19 PM"
+      }
+    ]
+  },
+  {
+    "tittle": "La IA como herramienta de desarrollo",
+    "content": "No hay que decir que este blog fue hecho con la ayuda de ChatGPT",
+    "author": "Richard",
+    "comments": [
+      {
+        "author": "Alejandro",
+        "content": "Comentario para borrar antes de entregar",
+        "date": "10/12/2024, 12:18:18 PM"
+      },
+      {
+        "author": "Adrian",
+        "content": "Borrar urgente este post!",
+        "date": "10/12/2024, 12:24:57 PM"
+      }
+    ]
+  },
+  {
+    "tittle": "Con cariño, Bootstrap",
+    "content": "La solución práctica de los backends.",
+    "author": "Admin",
+    "comments": []
+  },
+  {
+    "tittle": "Titulo prueba 2",
+    "content": "contenido prueba 2",
+    "author": "Usuario",
+    "comments": []
+  }
+]
